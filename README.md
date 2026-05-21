@@ -1,4 +1,4 @@
-# Dizzaract — Frontend Developer Test Task
+# Test Task
 
 ## Setup & Running
 
@@ -8,6 +8,16 @@ npm run dev       # development server at http://localhost:5173
 npm run build     # production build
 npm run preview   # preview the production build locally
 ```
+
+---
+
+## Project Overview
+
+Built with React, Tailwind CSS, and shadcn/ui.
+
+The bonus section, which is the animation part, can be accessed via `/chat`. I wanted the UI to be exactly the same, so I did not add it to the sidebar.
+
+Kindly note that the animation sequence had some problems as I could not export it as SVGs. Currently, I have used PNGs for it, and I was only able to do it with one color (purple).
 
 ---
 
@@ -30,6 +40,7 @@ src/
 ├── lib/
 │   └── utils.js      cn() helper — merges Tailwind classes safely
 ├── pages/
-│   └── ApiKeysPage.jsx
+│   ├── ApiKeysPage.jsx
+│   └── ChatPage.jsx
 └── App.jsx           Route definitions
 ```
