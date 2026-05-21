@@ -1,16 +1,35 @@
-# React + Vite
+# Dizzaract — Frontend Developer Test Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup & Running
 
-Currently, two official plugins are available:
+```bash
+npm install
+npm run dev       # development server at http://localhost:5173
+npm run build     # production build
+npm run preview   # preview the production build locally
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── assets/           SVG icons and logos
+├── components/
+│   ├── ui/           Reusable primitives (Button, Badge, DropdownMenu)
+│   ├── Layout.jsx    Persistent shell — sidebar, header, bottom nav, <Outlet />
+│   ├── Sidebar.jsx   Desktop collapsible nav (NavLink, badge support)
+│   ├── Header.jsx    Top bar — page title on mobile, balance+avatar on desktop
+│   ├── BottomNav.jsx Mobile tab bar
+│   ├── ApiKeysTable.jsx  Desktop table view
+│   ├── ApiKeysList.jsx   Mobile card list view
+│   └── ContextMenu.jsx   Per-row actions dropdown
+├── data/
+│   └── mockData.js   Placeholder data
+├── lib/
+│   └── utils.js      cn() helper — merges Tailwind classes safely
+├── pages/
+│   └── ApiKeysPage.jsx
+└── App.jsx           Route definitions
+```

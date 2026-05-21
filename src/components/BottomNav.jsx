@@ -1,45 +1,59 @@
-import { IconModels, IconKey, IconUsage, IconBilling, IconAccount } from './Icons'
+import { NavLink } from 'react-router-dom'
+import modelsIcon  from '../assets/icons/models.svg'
+import apiIcon     from '../assets/icons/api.svg'
+import usageIcon   from '../assets/icons/usage.svg'
+import billingIcon from '../assets/icons/billing.svg'
+import accountIcon from '../assets/icons/account.svg'
+import { cn } from '../lib/utils'
 
 const ITEMS = [
-  { id: 'models',   label: 'Models',   Icon: IconModels },
-  { id: 'api-keys', label: 'API keys', Icon: IconKey },
-  { id: 'usage',    label: 'Usage',    Icon: IconUsage },
-  { id: 'billing',  label: 'Billing',  Icon: IconBilling },
-  { id: 'account',  label: 'Account',  Icon: IconAccount },
+  { label: 'Models',   path: '/models',   icon: modelsIcon },
+  { label: 'API keys', path: '/api-keys', icon: apiIcon },
+  { label: 'Usage',    path: '/usage',    icon: usageIcon },
+  { label: 'Billing',  path: '/billing',  icon: billingIcon, badge: 8 },
+  { label: 'Account',  path: '/account',  icon: accountIcon },
 ]
 
-export default function BottomNav({ activeId, onNavigate }) {
+export default function BottomNav() {
   return (
-    /*
-     * flex on mobile  →  md:hidden
-     * Correct production pattern — CSS only, zero JS.
-     */
     <nav
       aria-label="Mobile navigation"
-      className="flex md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#1a1a1f] border-t border-[#2a2a32] z-50 [padding-bottom:env(safe-area-inset-bottom)]"
+      className="flex md:hidden fixed bottom-0 pt-2 left-0 right-0 h-18 border-t border-border bg-background z-50"
     >
-      {ITEMS.map(({ id, label, Icon }) => {
-        const isActive = activeId === id
-        return (
-          <button
-            key={id}
-            onClick={() => onNavigate(id)}
-            aria-current={isActive ? 'page' : undefined}
-            className={`
-              flex-1 flex flex-col items-center justify-center gap-1 text-[10px] font-medium relative
-              transition-colors duration-150
-              ${isActive ? 'text-[#f0f0f5]' : 'text-[#5a5a6e] hover:text-[#8b8b9e]'}
-            `}
-          >
-            {/* Active indicator line at top */}
-            {isActive && (
-              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-[#6b5ce7] rounded-b-sm" />
-            )}
-            <Icon size={20} />
-            {label}
-          </button>
-        )
-      })}
+      {ITEMS.map(({ label, path, icon, badge }) => (
+        <NavLink
+          key={path}
+          to={path}
+          end
+          className={({ isActive }) => cn(
+            'flex-1 flex flex-col items-center justify-center text-xs font-medium transition-colors duration-150',
+            isActive ? 'text-foreground' : 'text-muted hover:text-foreground'
+          )}
+        >
+          {({ isActive }) => (
+            <>
+              <span className={cn(
+                'flex flex-col items-center px-4 py-2 rounded-2xl transition-colors duration-150',
+                isActive && 'bg-surface'
+              )}>
+                <span className="relative">
+                  <img
+                    src={icon}
+                    alt=""
+                    className={cn('w-5 h-5 shrink-0 transition-opacity duration-150', !isActive && 'opacity-40')}
+                  />
+                  {badge != null && (
+                    <span className="absolute -top-1.5 -right-2 min-w-4 h-4 px-0.5 rounded-full bg-[#F8717199] flex items-center justify-center text-foreground text-xs font-bold leading-none">
+                      {badge > 99 ? '99+' : badge}
+                    </span>
+                  )}
+                </span>
+              </span>
+              {label}
+            </>
+          )}
+        </NavLink>
+      ))}
     </nav>
   )
 }
