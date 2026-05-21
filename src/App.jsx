@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 
 // Add new pages here: one import + one <Route>.
 const ApiKeysPage = lazy(() => import('./pages/ApiKeysPage'))
+const ChatPage    = lazy(() => import('./pages/ChatPage'))
 
 function NotImplementedPage() {
   const { pathname } = useLocation()
@@ -27,6 +28,15 @@ export default function App() {
           element={
             <Suspense>
               <ApiKeysPage />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="chat"
+          element={
+            <Suspense>
+              <ChatPage />
             </Suspense>
           }
         />

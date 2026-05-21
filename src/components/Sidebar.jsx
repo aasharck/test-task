@@ -94,7 +94,7 @@ export default function Sidebar() {
                 end
                 title={collapsed ? label : undefined}
                 className={({ isActive }) => cn(
-                  'flex items-center w-full rounded-xl text-sm font-medium transition-colors duration-100',
+                  'flex items-center w-full rounded-xl text-sm font-medium tracking-tight transition-colors duration-100',
                   collapsed
                     ? 'justify-center p-2.5'
                     : 'gap-2 px-2 py-1',

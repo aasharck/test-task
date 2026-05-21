@@ -18,7 +18,7 @@ export default function BottomNav() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="flex md:hidden fixed bottom-0 pt-2 left-0 right-0 h-18 border-t border-border bg-background z-50"
+      className="flex md:hidden fixed bottom-0 py-2 left-0 right-0 h-20 border-t border-border bg-background z-50"
     >
       {ITEMS.map(({ label, path, icon, badge }) => (
         <NavLink
